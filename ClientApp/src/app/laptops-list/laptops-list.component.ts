@@ -11,7 +11,7 @@ import { Component, OnInit } from '@angular/core';
 export class LaptopsListComponent implements OnInit 
 {
     laptops: any[] ;
-
+/***/
     constructor(private laptopService: DeviceService) 
     { 
 
