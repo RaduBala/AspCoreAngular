@@ -1,4 +1,4 @@
-import { Laptop } from './../models/laptop';
+
 import { DeviceService } from '../services/device.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -11,7 +11,7 @@ import { Component, OnInit } from '@angular/core';
 export class LaptopsListComponent implements OnInit 
 {
     laptops: any[] ;
-/***/
+
     constructor(private laptopService: DeviceService) 
     { 
 
