@@ -1,5 +1,5 @@
 import { Laptop } from './../models/laptop';
-import { LaptopService } from '../services/device.service';
+import { DeviceService } from '../services/device.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -12,7 +12,7 @@ export class LaptopsListComponent implements OnInit
 {
     laptops: any[] ;
 
-    constructor(private laptopService: LaptopService) 
+    constructor(private laptopService: DeviceService) 
     { 
 
     }
