@@ -1,4 +1,4 @@
-import { LaptopService } from '../services/device.service';
+import { DeviceService } from '../services/device.service';
 import { Laptop } from './../models/laptop';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -18,7 +18,7 @@ export class LaptopNewComponent implements OnInit
         employeeId: null,
     } ;
 
-    constructor(private laptopService: LaptopService, private router: Router)
+    constructor(private laptopService: DeviceService, private router: Router)
     { 
       
     }
