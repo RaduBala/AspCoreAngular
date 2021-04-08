@@ -1,0 +1,19 @@
+<h1>Laptops</h1>
+<h2>
+    <button [routerLink]="['/laptop/new']" class="btn btn-primary">Create New</button>
+</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let l of laptops; let indexOfElements=index;">
+            <td>{{ indexOfElements + 1 }}</td>
+            <td>{{ l.name }}</td>
+            <td><button class="btn btn-primary" (click)="onDelete(l)">Delete</button></td>
+        </tr>
+    </tbody>
+</table>

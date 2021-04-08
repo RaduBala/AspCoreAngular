@@ -1,0 +1,24 @@
+<h1>Employees</h1>
+<h2>
+    <button [routerLink]="['/employee/new']" class="btn btn-primary">Create New</button>
+</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let e of employees; let indexOfElements=index;">
+            <td>{{ indexOfElements + 1 }}</td>
+            <td>{{ e.name }}</td>
+            <td>
+                <div>
+                    <button class="btn btn-primary" (click)="onView(e)">View</button>
+                    <button class="btn btn-primary" (click)="onDelete(e)">Delete</button>
+                </div>      
+            </td>
+        </tr>
+    </tbody>
+</table>
