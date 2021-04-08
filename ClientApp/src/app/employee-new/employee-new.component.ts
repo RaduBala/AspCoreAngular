@@ -1,9 +1,9 @@
-import { Laptop } from './../models/laptop';
+import { Device } from '../models/device';
 import { Employee } from './../models/employee';
 import { Component, OnInit } from '@angular/core';
 import { EmployeeService } from '../services/employee.service';
 import { Router } from '@angular/router';
-import { LaptopService } from '../services/laptop.service';
+import { DeviceService } from '../services/device.service';
 
 @Component({
   selector: 'app-employee-new',
@@ -17,7 +17,7 @@ export class EmployeeNewComponent implements OnInit
     {
         id: 0,
         name: "",
-        laptopId: null
+        deviceId: null
     } ;
 
     constructor(private employeeService: EmployeeService, private router: Router)

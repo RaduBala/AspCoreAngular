@@ -1,8 +1,8 @@
-import { LaptopService } from '../services/device.service';
-import { Employee } from './../models/employee';
+import { DeviceService } from '../services/device.service';
+import { Employee } from '../models/employee';
 import { Component, OnInit } from '@angular/core';
 import { EmployeeService } from '../services/employee.service';
-import { Laptop } from '../models/laptop';
+import { Device } from '../models/device';
 
 @Component({
   selector: 'app-assign-laptop',
@@ -10,9 +10,9 @@ import { Laptop } from '../models/laptop';
   styleUrls: ['./assign-laptop.component.css']
 })
 
-export class AssignLaptopComponent implements OnInit
+export class AssignDeviceComponent implements OnInit
 {
-    laptops: Laptop[] ;
+    laptops: Device[] ;
 
     employees: Employee[];
 
@@ -20,10 +20,10 @@ export class AssignLaptopComponent implements OnInit
     {
       id: null,
       name: "",
-      laptopId: null
+      deviceId: null
     };
 
-    laptop: Laptop =
+    laptop: Device =
     {
         id: null,
         name: "",
@@ -32,7 +32,7 @@ export class AssignLaptopComponent implements OnInit
 
     searchedName: string ;
 
-    constructor(private employeeService: EmployeeService, private laptopService: LaptopService) 
+    constructor(private employeeService: EmployeeService, private deviceService: DeviceService) 
     { 
       
     }
@@ -41,7 +41,7 @@ export class AssignLaptopComponent implements OnInit
     {
         this.employeeService.getAll().subscribe(employees => this.employees = employees);
 
-        this.laptopService.getAll().subscribe(laptops => this.laptops = laptops);
+        this.deviceService.getAll().subscribe(laptops => this.laptops = laptops);
     }
 
     onLaptopChange(id)
@@ -60,6 +60,6 @@ export class AssignLaptopComponent implements OnInit
     {
         this.laptop.employeeId = this.employee.id ;
 
-        this.laptopService.update(this.laptop).subscribe();
+        this.deviceService.update(this.laptop).subscribe();
     }
 }

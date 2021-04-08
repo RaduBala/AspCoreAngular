@@ -6,26 +6,26 @@ import { Component, OnInit } from '@angular/core';
   selector: 'app-laptops-list',
   templateUrl: './laptops-list.component.html',
   styleUrls: ['./laptops-list.component.css']
-})/************************** */
+})
 
-export class LaptopsListComponent implements OnInit 
+export class DevicesListComponent implements OnInit 
 {
     laptops: any[] ;
 
-    constructor(private laptopService: DeviceService) 
+    constructor(private deviceService: DeviceService) 
     { 
 
     }
 
     ngOnInit() 
     {
-        this.laptopService.getAll().subscribe(laptops => this.laptops = laptops);
+        this.deviceService.getAll().subscribe(laptops => this.laptops = laptops);
     }
 
     onDelete(laptop)
     {
         console.log(laptop);
 
-        this.laptopService.delete(laptop.id).subscribe();
+        this.deviceService.delete(laptop.id).subscribe();
     }
 }

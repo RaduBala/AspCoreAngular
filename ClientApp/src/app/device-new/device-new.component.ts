@@ -1,5 +1,5 @@
 import { DeviceService } from '../services/device.service';
-import { Laptop } from './../models/laptop';
+import { Device } from '../models/device';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -9,17 +9,17 @@ import { Router } from '@angular/router';
   styleUrls: ['./laptop-new.component.css']
 })
 
-export class LaptopNewComponent implements OnInit
+export class DeviceNewComponent implements OnInit
 {
     /*ana are mere*/
-    laptop: Laptop =
+    device: Device =
     {
         id: 0,
         name: "",
         employeeId: null,
     } ;
 
-    constructor(private laptopService: DeviceService, private router: Router)
+    constructor(private deviceService: DeviceService, private router: Router)
     { 
       
     }
@@ -31,8 +31,8 @@ export class LaptopNewComponent implements OnInit
 
     submit()
     {
-        this.laptopService.create(this.laptop).subscribe(laptop => {
-            this.router.navigate(['laptop/all']);
+        this.deviceService.create(this.device).subscribe(device => {
+            this.router.navigate(['device/all']);
         });
     }
 }
