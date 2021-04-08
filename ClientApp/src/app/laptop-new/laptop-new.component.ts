@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 
 export class LaptopNewComponent implements OnInit
 {
+    /*ana are mere*/
     laptop: Laptop =
     {
         id: 0,
