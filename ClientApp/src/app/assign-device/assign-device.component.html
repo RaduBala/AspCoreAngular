@@ -1,6 +1,5 @@
 <h1>Assign laptop</h1>
 
-
 <form (ngSubmit)="search()">
     <div class="form-group">
         <label for="searchedName">Name</label>
@@ -9,17 +8,23 @@
     <button class="btn btn-primary">Search</button>
 </form>
 
-<form (ngSubmit)="submit()">
-    <div class="form-group">
-        <label for="employeeName">Name</label>
-        <input type="text" class="form-control" id="employeeName" [ngModel]="employee?.name" name = "employeeName">
-    </div>
-    <div class="form-group">
-        <label for="laptop">Laptop</label>
-        <select id="laptop" class="form-control" (ngModelChange)="onLaptopChange($event)" [(ngModel)]="employee.laptopId" name="laptopId">
+<div class="form-group">
+    <label for="employeeName">Name</label>
+    <input type="text" class="form-control" id="employeeName" [ngModel]="employee?.name" name = "employeeName">
+</div>
+
+<h2>Devices</h2>
+<div *ngFor="let d of devicesNames">
+    <label>{{d}}</label>
+</div>
+
+<h2>Assign new device<h2>
+<form (ngSubmit)="assign()">
+    <div class="form-group">     
+        <select id="deviceId" class="form-control" (ngModelChange)="onDeviceChange($event)" [(ngModel)]="deviceId" name="deviceId">
             <option value=""></option>
-            <option *ngFor="let l of laptops" value="{{ l.id }}">{{ l.name }}</option>
+            <option *ngFor="let d of devices" value="{{ d.id }}">{{ d.name }}</option>
         </select>
+        <button class="btn btn-primary">Assign</button>
     </div>
-    <button class="btn btn-primary">Update</button>
 </form>

@@ -64,14 +64,7 @@ namespace AspCoreAngular.Controllers
                 return BadRequest(ModelState);
             }
 
-            Device Device = DeviceRepository.FindByEmployee(DeviceResource.EmployeeId);
-
-            if(null != Device)
-            {
-                Device.EmployeeId = null ;
-            }
-
-            Device = mapper.Map<DeviceResource, Device>(DeviceResource);
+            Device Device = mapper.Map<DeviceResource, Device>(DeviceResource);
 
             DeviceRepository.Update(Device);
 

@@ -3,9 +3,9 @@ import { DeviceService } from '../services/device.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-laptops-list',
-  templateUrl: './laptops-list.component.html',
-  styleUrls: ['./laptops-list.component.css']
+  selector: 'app-devices-list',
+  templateUrl: './devices-list.component.html',
+  styleUrls: ['./devices-list.component.css']
 })
 
 export class DevicesListComponent implements OnInit 

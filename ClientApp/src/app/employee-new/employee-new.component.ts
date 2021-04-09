@@ -17,7 +17,7 @@ export class EmployeeNewComponent implements OnInit
     {
         id: 0,
         name: "",
-        deviceId: null
+        devices: null
     } ;
 
     constructor(private employeeService: EmployeeService, private router: Router)

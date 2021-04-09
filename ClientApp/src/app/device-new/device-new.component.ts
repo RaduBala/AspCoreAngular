@@ -4,14 +4,13 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-laptop-new',
-  templateUrl: './laptop-new.component.html',
-  styleUrls: ['./laptop-new.component.css']
+  selector: 'app-device-new',
+  templateUrl: './device-new.component.html',
+  styleUrls: ['./device-new.component.css']
 })
 
 export class DeviceNewComponent implements OnInit
 {
-    /*ana are mere*/
     device: Device =
     {
         id: 0,

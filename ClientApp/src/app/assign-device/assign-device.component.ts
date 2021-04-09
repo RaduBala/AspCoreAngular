@@ -5,14 +5,14 @@ import { EmployeeService } from '../services/employee.service';
 import { Device } from '../models/device';
 
 @Component({
-  selector: 'app-assign-laptop',
-  templateUrl: './assign-laptop.component.html',
-  styleUrls: ['./assign-laptop.component.css']
+  selector: 'app-assign-device',
+  templateUrl: './assign-device.component.html',
+  styleUrls: ['./assign-device.component.css']
 })
 
 export class AssignDeviceComponent implements OnInit
 {
-    laptops: Device[] ;
+    devices: Device[] ;
 
     employees: Employee[];
 
@@ -20,15 +20,19 @@ export class AssignDeviceComponent implements OnInit
     {
       id: null,
       name: "",
-      deviceId: null
+      devices: null
     };
 
-    laptop: Device =
+    device: Device =
     {
         id: null,
         name: "",
         employeeId: null,
     }
+
+    deviceId: number ;
+
+    devicesNames: string[] = [] ;
 
     searchedName: string ;
 
@@ -41,25 +45,32 @@ export class AssignDeviceComponent implements OnInit
     {
         this.employeeService.getAll().subscribe(employees => this.employees = employees);
 
-        this.deviceService.getAll().subscribe(laptops => this.laptops = laptops);
+        this.deviceService.getAll().subscribe(devices => this.devices = devices);
     }
 
-    onLaptopChange(id)
+    onDeviceChange(id)
     {
-        this.laptop = this.laptops.find(l => l.id == id);
+        this.device = this.devices.find(l => l.id == id);
     }
 
     search()
     {
+        this.devicesNames = [] ;
+
         this.employee = this.employees.find(e => e.name == this.searchedName);
 
-        console.log(this.employee);
+        for(let deviceId of this.employee.devices)
+        {
+            var device: Device = this.devices.find(d => d.id == deviceId);
+
+            this.devicesNames.push(device.name);
+        }
     }
 
-    submit()
+    assign()
     {
-        this.laptop.employeeId = this.employee.id ;
+        this.device.employeeId = this.employee.id ;
 
-        this.deviceService.update(this.laptop).subscribe();
+        this.deviceService.update(this.device).subscribe();
     }
 }
