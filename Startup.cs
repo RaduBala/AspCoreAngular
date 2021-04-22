@@ -8,11 +8,17 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using AutoMapper;
+using AspCoreAngular.Authentication;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace AspCoreAngular
 {
     public class Startup
     {
+        private string secretKey = "this is my custom Secret key for authnetication";
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -31,12 +37,33 @@ namespace AspCoreAngular
 
             services.AddTransient<IEmployeeRepository, EmployeeRepository>();
             services.AddTransient<IDeviceRepository, DeviceRepository>();
+            services.AddTransient<IUserRepository, UserRepository>();
             services.AddTransient<IUnitOfWork, UnitOfWork>();
+
+            services.AddSingleton<IJwtAuth>(new JwtAuth(secretKey));
 
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
                 configuration.RootPath = "ClientApp/dist";
+            });
+
+            services.AddAuthentication(configuration =>
+            {
+                configuration.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                configuration.DefaultChallengeScheme    = JwtBearerDefaults.AuthenticationScheme;
+
+            }).AddJwtBearer(configuration =>
+            {
+                configuration.RequireHttpsMetadata      = false;
+                configuration.SaveToken                 = true;
+                configuration.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey         = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(secretKey)),
+                    ValidateIssuer           = false,
+                    ValidateAudience         = false,
+                };
             });
         }
 
@@ -62,6 +89,9 @@ namespace AspCoreAngular
             }
 
             app.UseRouting();
+
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

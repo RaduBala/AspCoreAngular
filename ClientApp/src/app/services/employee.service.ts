@@ -1,5 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { TokenService } from './token.service';
+import { UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -7,14 +9,19 @@ import { Injectable } from '@angular/core';
 
 export class EmployeeService
 {
-    constructor(private http: HttpClient) 
+    constructor(private http: HttpClient, private userService: UserService) 
     {
 
     }
 
     public getAll()
     {
-        return this.http.get<any[]>('employee/api/all');
+        var header =
+        {
+            headers: new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('token')}`)
+        }
+
+        return this.http.get<any[]>('employee/api/all',header);
     }
 
     public get(employeeId)

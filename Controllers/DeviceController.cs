@@ -3,6 +3,7 @@ using AspCoreAngular.Models;
 using AspCoreAngular.Persistance;
 using AspCoreAngular.Resources;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AspCoreAngular.Controllers

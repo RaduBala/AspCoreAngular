@@ -1,9 +1,11 @@
 using System.Collections.Generic;
 using System.Linq;
+using AspCoreAngular.Authorization;
 using AspCoreAngular.Models;
 using AspCoreAngular.Persistance;
 using AspCoreAngular.Resources;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AspCoreAngular.Controllers
@@ -25,6 +27,7 @@ namespace AspCoreAngular.Controllers
         }
 
         [HttpGet("api/all")]
+        [Authorize]
         public IEnumerable<EmployeeResource> GetAll()
         {
             List<Employee> employees = employeeRepository.GetAll().ToList();

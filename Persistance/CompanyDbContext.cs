@@ -8,6 +8,8 @@ namespace AspCoreAngular.Persistance
         public DbSet<Employee> Employees { get; set; } 
 
         public DbSet<Device> Devices { get; set; } 
+
+        public DbSet<User> Users { get; set; }
  
         public CompanyDbContext(DbContextOptions<CompanyDbContext> options) : base(options)
         {

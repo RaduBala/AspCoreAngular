@@ -17,6 +17,9 @@ import { DevicesListComponent } from './devices-list/devices-list.component';
 import { AssignDeviceComponent } from './assign-device/assign-device.component';
 import { EmployeeViewComponent } from './employee-view/employee-view.component';
 import { DeviceService } from './services/device.service';
+import { LoginComponent } from './login/login.component';
+import { UserService } from './services/user.service';
+import { TokenService } from './services/token.service';
 
 @NgModule({
   declarations: [
@@ -31,6 +34,7 @@ import { DeviceService } from './services/device.service';
     DevicesListComponent,
     AssignDeviceComponent,
     EmployeeViewComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -44,13 +48,15 @@ import { DeviceService } from './services/device.service';
       { path: 'device/all', component: DevicesListComponent },
       { path: 'device/new', component: DeviceNewComponent },
       { path: 'device/assign', component: AssignDeviceComponent },
+      { path: 'login', component: LoginComponent },
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent },
     ])
   ],
   providers: [
     EmployeeService,
-    DeviceService
+    DeviceService,
+    UserService
   ],
   bootstrap: [AppComponent]
 })
